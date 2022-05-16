@@ -90,9 +90,7 @@ CREATE TABLE `accs_users` (
 -- Zrzut danych tabeli `accs_users`
 --
 
-INSERT INTO `accs_users` (`id`, `login`, `password`) VALUES
-(1, 'root', '$2y$10$wkRgILmbL3u0XFFZQI5t4u01t4v0.9RxZqkxPXwpKXD8sbClv/FX.'), --- password: rootpassword
-(2, 'user', '$2y$10$23mqGicHLz4DibOEz6L3HOXw0goE4rJrPYO29SmYyQkxjCWvD9b6S'); --- password: userpassword
+INSERT INTO `accs_users` (`id`, `login`, `password`) VALUES (1, 'root', '$2y$10$wkRgILmbL3u0XFFZQI5t4u01t4v0.9RxZqkxPXwpKXD8sbClv/FX.'), (2, 'user', '$2y$10$23mqGicHLz4DibOEz6L3HOXw0goE4rJrPYO29SmYyQkxjCWvD9b6S');
 
 --
 -- Indeksy dla zrzutów tabel
