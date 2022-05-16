@@ -18,7 +18,8 @@ There are two users by default:
 1. [login]: "user", [password]: "userpassword"
 2. [login]: "root", [password]: "rootpassword"
 
-Screenshots of use the web forum:
+#Screenshots of use the web forum:
+
 <img src='https://raw.githubusercontent.com/unbe1iev/rust-forum/main/images/1.png' alt='1.png'>
 <img src='https://raw.githubusercontent.com/unbe1iev/rust-forum/main/images/2.png' alt='2.png'>
 <img src='https://raw.githubusercontent.com/unbe1iev/rust-forum/main/images/3.png' alt='3.png'>
