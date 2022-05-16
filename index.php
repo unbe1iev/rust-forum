@@ -20,9 +20,9 @@ session_start();
   <header>
   <div id="headerwrapper">
 	  <div id="wrapper">
-		<div id="logo"><image id="logoimage" src="resources/header.png"></a></div>
+		<div id="logo"><image src="resources/header.png" width="150px" height="40px"></a></div>
 
-		<div id="searchbar">-->
+		<div id="searchbar">
 				<!--Tutaj element-->
 		</div>
 	  </div>
@@ -35,13 +35,14 @@ session_start();
   <main>
     <section id="left">
       <div id="videoplace">
-        <video loop muted autoplay playsinline>
+        <video loop muted autoplay playsinline width="585px">
             <source src="https://files.facepunch.com/s/rust/f14016" type="video/mp4">
         </video>
       </div>
-        <div id="toolpanel">
-          <!--Tutaj element-->
-        </div>
+
+      <div id="toolpanel">
+        <!--Tutaj element-->
+      </div>
     </section>
 
     <section id="right">

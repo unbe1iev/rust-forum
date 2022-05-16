@@ -8,16 +8,10 @@ if (isset($_POST['login']) && isset($_POST['password1'])){
     $password = $_POST['password1'];
 
     $download_password = mysqli_query($connection, "SELECT password FROM $dbprefix"."users WHERE login='".$login."'");
+    $result = mysqli_fetch_assoc($download_password);
+    $password_encrypted = $result["password"];
 
-    $access = 0;
-    if(mysqli_num_rows($download_password) == true){
-
-      $result = mysqli_fetch_assoc($download_password);
-
-      $password_encrypted = $result["password"];
-
-      $access = password_verify($password, $password_encrypted);
-    }
+    $access = password_verify($password, $password_encrypted);
 
     if ($access == 1){
       setcookie("logged", 1);
@@ -28,10 +22,11 @@ if (isset($_POST['login']) && isset($_POST['password1'])){
 
       if ($permission == 'root'){
         $_SESSION['authorized'] = 'root';
-        echo "<div class='normalfloat'><button class='button3' type='submit' name='addArticleButtonForm' onclick=\"addArticleForm('$permission')\">Add an article</button></div><br><br>";
-        echo "<br><br>
-        <button class='reloadOrdered' onclick=\"reloadOrdered('general', '$permission')\">
-                <img class='categoryimage' src='https://files.facepunch.com/f/fi/6?c=cd84f'>
+        echo "<div style='float: left'><button class='button3' type='submit' name='addArticleButtonForm' onclick=\"addArticleForm('$permission')\" style='width: 120px; height: 40px; margin-left: 25px; margin-top: 3px'>Add an article</button></div>";
+        echo "<span class='font2' style='color: #696969; text-transform: uppercase; margin-left: 40px'>Rust Forum</span><br>
+        <br>
+        <button onclick=\"reloadOrdered('general', '$permission')\" style='width: 585px;'>
+                <img src='https://files.facepunch.com/f/fi/6?c=cd84f' style='float: left;' width='55' height='55'>
                 <div class='forumtitle'>
                 Rust General
                 </div>
@@ -40,8 +35,8 @@ if (isset($_POST['login']) && isset($_POST['password1'])){
                 </div>
         </button>
         <br><br>
-        <button class='reloadOrdered' onclick=\"reloadOrdered('servers', '$permission')\">
-                <img class='categoryimage' src='https://files.facepunch.com/f/fi/46.d551c'>
+        <button onclick=\"reloadOrdered('servers', '$permission')\" style='width: 585px;'>
+                <img src='https://files.facepunch.com/f/fi/46.d551c' style='float: left;' width='55' height='55'>
                 <div class='forumtitle'>
                 Servers Discussions
                 </div>
@@ -50,8 +45,8 @@ if (isset($_POST['login']) && isset($_POST['password1'])){
                 </div>
         </button>
         <br><br>
-        <button class='reloadOrdered' onclick=\"reloadOrdered('tips', '$permission')\">
-                <img class='categoryimage' src='https://files.facepunch.com/f/forumicons/7/20171017-130258'>
+        <button onclick=\"reloadOrdered('tips', '$permission')\" style='width: 585px;'>
+                <img src='https://files.facepunch.com/f/forumicons/7/20171017-130258' style='float: left;' width='55' height='55'>
                 <div class='forumtitle'>
                 Game Tips
                 </div>
@@ -60,8 +55,8 @@ if (isset($_POST['login']) && isset($_POST['password1'])){
                 </div>
         </button>
         <br><br>
-        <button class='reloadOrdered' onclick=\"reloadOrdered('help', '$permission')\">
-                <img class='categoryimage' src='https://files.facepunch.com/f/forumicons/39/20171017-130221'>
+        <button onclick=\"reloadOrdered('help', '$permission')\" style='width: 585px;'>
+                <img src='https://files.facepunch.com/f/forumicons/39/20171017-130221' style='float: left;' width='55' height='55'>
                 <div class='forumtitle'>
                 Help me
                 </div>
@@ -71,9 +66,9 @@ if (isset($_POST['login']) && isset($_POST['password1'])){
         </button>";
         echo "~";
         echo "<input type='text' id='searchfield' placeholder='Search' size='25'>";
-        echo "<button type='submit' id='searchsubmit' onclick=\"searchcontent('root')\"><image src='resources/search.ico' id='searchico'/></button>";
+        echo "<button type='submit' id='searchsubmit' onclick=\"searchcontent('root')\"><image src='resources/search.ico' style='width: 15px; height: 15px;'/></button>";
         echo "~";
-        echo "<div class='rank'>Welcome, ".$login."</div><div class='normalfloat'><button class='button2' type='submit' name='logoutredirect' onclick='logOut()' id='logoutpagebutton'>Log out</button></div>";
+        echo "<div class='rank' style='color: white'>Welcome, ".$login."</div><div style='float: left;'><button class='button2' type='submit' name='logoutredirect' onclick='logOut()' id='logoutpagebutton'>Log out</button></div>";
         echo "~";
         mysqli_select_db($connection, $dbname);
 
@@ -89,13 +84,13 @@ if (isset($_POST['login']) && isset($_POST['password1'])){
 
           <div class='articlepanel'>
 
-          <div class='normalfloat'>
+          <div style='float: left'>
           <input type='image' src='resources/delete.png' onclick=\"deleteArticleScript($id)\"></div>
 
-          <div class='marginfloat'>
+          <div style='float: left; margin-left: 5px'>
           <input type='image' src='resources/edit.png' onclick=\"editArticleForm($id, 'root')\"></div>
 
-          <div class='marginfloat'>
+          <div style='float: left; margin-left: 5px'>
           <input type='image' src='resources/preview.png' onclick='previewArticle($id)'></div>
 
           </div>
@@ -106,52 +101,53 @@ if (isset($_POST['login']) && isset($_POST['password1'])){
 
       if  ($permission == 'user'){
         $_SESSION['authorized'] = 'user';
-        echo "<div class='normalfloat'><button class='button3' type='submit' name='addArticleButtonForm' onclick=\"addArticleForm('$permission')\">Add an article</button></div><br><br>";
-        echo "<br><br>
-        <button class='reloadOrdered' onclick=\"reloadOrdered('general', '$permission')\">
-                <img class='categoryimage' src='https://files.facepunch.com/f/fi/6?c=cd84f'>
-                <div class='forumtitle'>
-                Rust General
-                </div>
-                <div class='forumsubtitle'>
-                Anything and everything to do with Rust.
-                </div>
-        </button>
-        <br><br>
-        <button class='reloadOrdered' onclick=\"reloadOrdered('servers', '$permission')\">
-                <img class='categoryimage' src='https://files.facepunch.com/f/fi/46.d551c'>
-                <div class='forumtitle'>
-                Servers Discussions
-                </div>
-                <div class='forumsubtitle'>
-                Server talks.
-                </div>
-        </button>
-        <br><br>
-        <button class='reloadOrdered' onclick=\"reloadOrdered('tips', '$permission')\">
-                <img class='categoryimage' src='https://files.facepunch.com/f/forumicons/7/20171017-130258'>
-                <div class='forumtitle'>
-                Game Tips
-                </div>
-                <div class='forumsubtitle'>
-                Tutorials and tips to be better.
-                </div>
-        </button>
-        <br><br>
-        <button class='reloadOrdered' onclick=\"reloadOrdered('help', '$permission')\">
-                <img class='categoryimage' src='https://files.facepunch.com/f/forumicons/39/20171017-130221'>
-                <div class='forumtitle'>
-                Help me
-                </div>
-                <div class='forumsubtitle'>
-                Needed help with.
-                </div>
-        </button>";
+        echo "<div style='float: left'><button class='button3' type='submit' name='addArticleButtonForm' onclick=\"AddArticleForm('$permission')\" style='width: 120px; height: 40px; margin-left: 25px; margin-top: 3px'>Add an article</button></div>";
+        echo "<span class='font2' style='color: #696969; text-transform: uppercase; margin-left: 40px'>Rust Forum</span><br>
+      	<br>
+      	<button onclick=\"reloadOrdered('general', '$permission')\" style='width: 585px;'>
+      					<img src='https://files.facepunch.com/f/fi/6?c=cd84f' style='float: left;' width='55' height='55'>
+      					<div class='forumtitle'>
+      					Rust General
+      					</div>
+      					<div class='forumsubtitle'>
+      					Anything and everything to do with Rust.
+      					</div>
+      	</button>
+      	<br><br>
+      	<button onclick=\"reloadOrdered('servers', '$permission')\" style='width: 585px;'>
+      					<img src='https://files.facepunch.com/f/fi/46.d551c' style='float: left;' width='55' height='55'>
+      					<div class='forumtitle'>
+      					Servers Discussions
+      					</div>
+      					<div class='forumsubtitle'>
+      					Server talks.
+      					</div>
+      	</button>
+      	<br><br>
+      	<button onclick=\"reloadOrdered('tips', '$permission')\" style='width: 585px;'>
+      					<img src='https://files.facepunch.com/f/forumicons/7/20171017-130258' style='float: left;' width='55' height='55'>
+      					<div class='forumtitle'>
+      					Game Tips
+      					</div>
+      					<div class='forumsubtitle'>
+      					Tutorials and tips to be better.
+      					</div>
+      	</button>
+      	<br><br>
+      	<button onclick=\"reloadOrdered('help', '$permission')\" style='width: 585px;'>
+      					<img src='https://files.facepunch.com/f/forumicons/39/20171017-130221' style='float: left;' width='55' height='55'>
+      					<div class='forumtitle'>
+      					Help me
+      					</div>
+      					<div class='forumsubtitle'>
+      					Needed help with.
+      					</div>
+      	</button>";
         echo "~";
         echo "<input type='text' id='searchfield' placeholder='Search' size='25'>";
-        echo "<button type='submit' id='searchsubmit' onclick=\"searchcontent('user')\"><image src='resources/search.ico' id='searchico'/></button>";
+        echo "<button type='submit' id='searchsubmit' onclick=\"searchcontent('user')\"><image src='resources/search.ico' style='width: 15px; height: 15px;'/></button>";
         echo "~";
-        echo "<div class='rank'>Welcome, ".$login."</div><button class='button2' type='submit' name='logoutredirect' onclick='logOut()' id='logoutpagebutton'>Log out</button>";
+        echo "<div class='rank' style='color: white'>Welcome, ".$login."</div><button class='button2' type='submit' name='logoutredirect' onclick='logOut()' id='logoutpagebutton'>Log out</button>";
         echo "~";
         mysqli_select_db($connection, $dbname);
 
@@ -167,11 +163,11 @@ if (isset($_POST['login']) && isset($_POST['password1'])){
       }
     } else{
       echo "
-          <div id='loginform1'>
-            <span class='span1'>Log in to your account!</span>
+          <div style='margin-top: 30px;width: 585px; height: 365px'>
+            <span class='span1' style='margin-left: 100px;'>Log in to your account!</span>
             <br><br><br><br><br>
 
-            <div id='loginform3'>
+            <div style='width: 210px; height: 200px; float: left'>
               <span class='span2'>Login: </span>
               <br><br><br>
 
@@ -179,27 +175,27 @@ if (isset($_POST['login']) && isset($_POST['password1'])){
               <br><br><br>
             </div>
 
-            <div id='loginform2'>
-              <input type='text' id='login'>
-              <input type='password' id='password1'>
+            <div style='width: 175px; height: 200px; float: left'>
+              <input type='text' id='login' style='margin-top: 5px'>
+              <input type='password' id='password1' style='margin-top: 43px'>
               <button class='button1' type='submit' name='signinform' onclick='signinScript()'>Sign in</button>
             </div>
 
-            <div id='neededstyle2'>
+            <div style='width: 200px; height: 200px; float: left'>
               <image src='resources/campfire.gif' id='campfire' width='210px' height='150px'>
             </div>
 
-            <div id='neededstyle1'>
-            <image src='resources/ak47.png' id='ak47' width='125px' height='157px'>
+            <div style='width: 200px; height: 180px; margin-top: 150px'>
+            <image src='resources/ak47.png' id='ak47' width='125px' height='157px' style='margin-top: -105px; margin-left: 20px;transform: rotate(0.2turn);'>
             </div>
           </div>";
-      echo "<h1 id='warn3'>Login or password is incorrect!</h1>";
+      echo "<h1 style='color: red'>Login or password is incorrect!</h1>";
       echo "~";
       echo "<input type='text' id='searchfield' placeholder='Search' size='25'>";
-      echo "<button type='submit' id='searchsubmit' onclick=\"searchcontent('null')\"><image src='resources/search.ico' id='searchico'/></button>";
+      echo "<button type='submit' id='searchsubmit' onclick=\"searchcontent('null')\"><image src='resources/search.ico' style='width: 15px; height: 15px;'/></button>";
       echo "~";
       echo "<div id='registerpagebutton'>
-      <button class='button3' type='submit' name='registerpage' onclick='register()'>Register</button><br><br>
+      <button class='button3' type='submit' name='registerpage' onclick='register()'>Register</button>
       </div>
 
       <div id='loginpagebutton'>
@@ -221,11 +217,11 @@ if (isset($_POST['login']) && isset($_POST['password1'])){
 
   } else{
     echo "
-        <div id='loginform1'>
-          <span class='span1'>Log in to your account!</span>
+        <div style='margin-top: 30px;width: 585px; height: 365px'>
+          <span class='span1' style='margin-left: 100px;'>Log in to your account!</span>
           <br><br><br><br><br>
 
-          <div id='loginform3'>
+          <div style='width: 210px; height: 200px; float: left'>
             <span class='span2'>Login: </span>
             <br><br><br>
 
@@ -233,31 +229,31 @@ if (isset($_POST['login']) && isset($_POST['password1'])){
             <br><br><br>
           </div>
 
-          <div id='registerform3'>
-            <input type='text' id='login'>
-            <input type='password' id='password1'>
+          <div style='width: 175px; height: 200px; float: left'>
+            <input type='text' id='login' style='margin-top: 5px'>
+            <input type='password' id='password1' style='margin-top: 43px'>
             <button class='button1' type='submit' name='signinform' onclick='signinScript()'>Sign in</button>
           </div>
 
-          <div id='neededstyle2'>
+          <div style='width: 200px; height: 200px; float: left'>
             <image src='resources/campfire.gif' id='campfire' width='210px' height='150px'>
           </div>
 
-          <div id='neededstyle1'>
-          <image src='resources/ak47.png' id='ak47' width='125px' height='157px'>
+          <div style='width: 200px; height: 180px; margin-top: 150px'>
+          <image src='resources/ak47.png' id='ak47' width='125px' height='157px' style='margin-top: -105px; margin-left: 20px;transform: rotate(0.2turn);'>
           </div>
         </div>";
-    echo "<h1 id='warn3'>Fill in all fields!</h1>";
+    echo "<h1 style='color: red'>Fill in all fields!</h1>";
     echo "~";
     echo "<input type='text' id='searchfield' placeholder='Search' size='25'>";
-    echo "<button type='submit' id='searchsubmit' onclick=\"searchcontent('null')\"><image src='resources/search.ico' id='searchico'/></button>";
+    echo "<button type='submit' id='searchsubmit' onclick=\"searchcontent('null')\"><image src='resources/search.ico' style='width: 15px; height: 15px;'/></button>";
     echo "~";
     echo "<div id='registerpagebutton'>
-    <button class='button3' type='submit' name='registerpage' onclick='register()'>Register</button><br>
+    <button class='button3' type='submit' name='registerpage' onclick='register()'>Register</button>
     </div>
 
     <div id='loginpagebutton'>
-    <button class='button3' type='submit' name='loginpage' onclick='signin()'>Sign in</button><br>
+    <button class='button3' type='submit' name='loginpage' onclick='signin()'>Sign in</button>
     </div>";
     echo "~";
     mysqli_select_db($connection, $dbname);
@@ -284,10 +280,11 @@ if (isset($_SESSION['authorized'])){
 
     if ($permission == 'root'){
       $_SESSION['authorized'] = 'root';
-      echo "<div class='normalfloat'><button class='button3' type='submit' name='addArticleButtonForm' onclick=\"addArticleForm('$permission')\">Add an article</button></div><br><br>";
-      echo "<br><br>
-      <button class='reloadOrdered' onclick=\"reloadOrdered('general', '$permission')\">
-              <img class='categoryimage' src='https://files.facepunch.com/f/fi/6?c=cd84f'>
+      echo "<div style='float: left'><button class='button3' type='submit' name='addArticleButtonForm' onclick=\"addArticleForm('$permission')\" style='width: 120px; height: 40px; margin-left: 25px; margin-top: 3px'>Add an article</button></div>";
+      echo "<span class='font2' style='color: #696969; text-transform: uppercase; margin-left: 40px'>Rust Forum</span><br>
+      <br>
+      <button onclick=\"reloadOrdered('general', '$permission')\" style='width: 585px;'>
+              <img src='https://files.facepunch.com/f/fi/6?c=cd84f' style='float: left;' width='55' height='55'>
               <div class='forumtitle'>
               Rust General
               </div>
@@ -296,8 +293,8 @@ if (isset($_SESSION['authorized'])){
               </div>
       </button>
       <br><br>
-      <button class='reloadOrdered' onclick=\"reloadOrdered('servers', '$permission')\">
-              <img class='categoryimage' src='https://files.facepunch.com/f/fi/46.d551c'>
+      <button onclick=\"reloadOrdered('servers', '$permission')\" style='width: 585px;'>
+              <img src='https://files.facepunch.com/f/fi/46.d551c' style='float: left;' width='55' height='55'>
               <div class='forumtitle'>
               Servers Discussions
               </div>
@@ -306,8 +303,8 @@ if (isset($_SESSION['authorized'])){
               </div>
       </button>
       <br><br>
-      <button class='reloadOrdered' onclick=\"reloadOrdered('tips', '$permission')\">
-              <img class='categoryimage' src='https://files.facepunch.com/f/forumicons/7/20171017-130258'>
+      <button onclick=\"reloadOrdered('tips', '$permission')\" style='width: 585px;'>
+              <img src='https://files.facepunch.com/f/forumicons/7/20171017-130258' style='float: left;' width='55' height='55'>
               <div class='forumtitle'>
               Game Tips
               </div>
@@ -316,8 +313,8 @@ if (isset($_SESSION['authorized'])){
               </div>
       </button>
       <br><br>
-      <button class='reloadOrdered' onclick=\"reloadOrdered('help', '$permission')\">
-              <img class='categoryimage' src='https://files.facepunch.com/f/forumicons/39/20171017-130221'>
+      <button onclick=\"reloadOrdered('help', '$permission')\" style='width: 585px;'>
+              <img src='https://files.facepunch.com/f/forumicons/39/20171017-130221' style='float: left;' width='55' height='55'>
               <div class='forumtitle'>
               Help me
               </div>
@@ -327,9 +324,9 @@ if (isset($_SESSION['authorized'])){
       </button>";
       echo "~";
       echo "<input type='text' id='searchfield' placeholder='Search' size='25'>";
-      echo "<button type='submit' id='searchsubmit' onclick=\"searchcontent('root')\"><image src='resources/search.ico' id='searchico'/></button>";
+      echo "<button type='submit' id='searchsubmit' onclick=\"searchcontent('root')\"><image src='resources/search.ico' style='width: 15px; height: 15px;'/></button>";
       echo "~";
-      echo "<div class='rank'>Welcome, ".$login."</div><div class='normalfloat'><button class='button2' type='submit' name='logoutredirect' onclick='logOut()' id='logoutpagebutton'>Log out</button></div>";
+      echo "<div class='rank' style='color: white'>Welcome, ".$login."</div><div style='float: left;'><button class='button2' type='submit' name='logoutredirect' onclick='logOut()' id='logoutpagebutton'>Log out</button></div>";
       echo "~";
       mysqli_select_db($connection, $dbname);
 
@@ -345,13 +342,13 @@ if (isset($_SESSION['authorized'])){
 
         <div class='articlepanel'>
 
-        <div class='normalfloat'>
+        <div style='float: left'>
         <input type='image' src='resources/delete.png' onclick=deleteArticleScript($id)></div>
 
-        <div class='marginfloat'>
+        <div style='float: left; margin-left: 5px'>
         <input type='image' src='resources/edit.png' onclick=\"editArticleForm($id, 'root')\"></div>
 
-        <div class='marginfloat'>
+        <div style='float: left; margin-left: 5px'>
         <input type='image' src='resources/preview.png' onclick='previewArticle($id)'></div>
 
         </div>
@@ -362,10 +359,11 @@ if (isset($_SESSION['authorized'])){
 
     if  ($permission == 'user'){
       $_SESSION['authorized'] = 'user';
-      echo "<div class='normalfloat'><button class='button3' type='submit' name='addArticleButtonForm' onclick=\"addArticleForm('$permission')\">Add an article</button></div><br><br>";
-      echo "<br><br>
-      <button class='reloadOrdered' onclick=\"reloadOrdered('general', '$permission')\">
-              <img class='categoryimage' src='https://files.facepunch.com/f/fi/6?c=cd84f'>
+      echo "<div style='float: left'><button class='button3' type='submit' name='addArticleButtonForm' onclick=\"addArticleForm('$permission')\" style='width: 120px; height: 40px; margin-left: 25px; margin-top: 3px'>Add an article</button></div>";
+      echo "<span class='font2' style='color: #696969; text-transform: uppercase; margin-left: 40px'>Rust Forum</span><br>
+      <br>
+      <button onclick=\"reloadOrdered('general', '$permission')\" style='width: 585px;'>
+              <img src='https://files.facepunch.com/f/fi/6?c=cd84f' style='float: left;' width='55' height='55'>
               <div class='forumtitle'>
               Rust General
               </div>
@@ -374,8 +372,8 @@ if (isset($_SESSION['authorized'])){
               </div>
       </button>
       <br><br>
-      <button class='reloadOrdered' onclick=\"reloadOrdered('servers', '$permission')\">
-              <img class='categoryimage' src='https://files.facepunch.com/f/fi/46.d551c'>
+      <button onclick=\"reloadOrdered('servers', '$permission')\" style='width: 585px;'>
+              <img src='https://files.facepunch.com/f/fi/46.d551c' style='float: left;' width='55' height='55'>
               <div class='forumtitle'>
               Servers Discussions
               </div>
@@ -384,8 +382,8 @@ if (isset($_SESSION['authorized'])){
               </div>
       </button>
       <br><br>
-      <button class='reloadOrdered' onclick=\"reloadOrdered('tips', '$permission')\">
-              <img class='categoryimage' src='https://files.facepunch.com/f/forumicons/7/20171017-130258'>
+      <button onclick=\"reloadOrdered('tips', '$permission')\" style='width: 585px;'>
+              <img src='https://files.facepunch.com/f/forumicons/7/20171017-130258' style='float: left;' width='55' height='55'>
               <div class='forumtitle'>
               Game Tips
               </div>
@@ -394,8 +392,8 @@ if (isset($_SESSION['authorized'])){
               </div>
       </button>
       <br><br>
-      <button class='reloadOrdered' onclick=\"reloadOrdered('help', '$permission')\">
-              <img class='categoryimage' src='https://files.facepunch.com/f/forumicons/39/20171017-130221'>
+      <button onclick=\"reloadOrdered('help', '$permission')\" style='width: 585px;'>
+              <img src='https://files.facepunch.com/f/forumicons/39/20171017-130221' style='float: left;' width='55' height='55'>
               <div class='forumtitle'>
               Help me
               </div>
@@ -405,9 +403,9 @@ if (isset($_SESSION['authorized'])){
       </button>";
       echo "~";
       echo "<input type='text' id='searchfield' placeholder='Search' size='25'>";
-      echo "<button type='submit' id='searchsubmit' onclick=\"searchcontent('user')\"><image src='resources/search.ico' id='searchico'/></button>";
+      echo "<button type='submit' id='searchsubmit' onclick=\"searchcontent('user')\"><image src='resources/search.ico' style='width: 15px; height: 15px;'/></button>";
       echo "~";
-      echo "<div class='rank'>Welcome, ".$login."</div><div class='normalfloat'><button class='button2' type='submit' name='logoutredirect' onclick='logOut()' id='logoutpagebutton'>Log out</button></div>";
+      echo "<div class='rank' style='color: white'>Welcome, ".$login."</div><div style='float: left;'><button class='button2' type='submit' name='logoutredirect' onclick='logOut()' id='logoutpagebutton'>Log out</button></div>";
       echo "~";
       mysqli_select_db($connection, $dbname);
 
@@ -422,7 +420,7 @@ if (isset($_SESSION['authorized'])){
       }
     }
   }
-} else echo "<h1 id='warn1'>You can't step like that!</h1><h2 id='warn2'>There is nothing here...</h2>";
+} else echo "<h1 style='color: red; font-family: Impact'>You can't step lisdgsdfsdke that!</h1><h2 style='color: red; font-family: Calibri'>There is nothing here...</h2>";
 
 mysqli_close($connection);
 ?>

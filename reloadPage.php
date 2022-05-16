@@ -2,10 +2,10 @@
 	session_start();
 	require("config.php");
 
-	echo "<br><div id='font2center'><span id='font2'>Rust Forum</span></div>
-	<div id='categoriescontainer'>
-	<button class='categorybutton' onclick=\"reload('general')\">
-					<img class='categoryimage' src='https://files.facepunch.com/f/fi/6?c=cd84f'>
+	echo "<span class='font2' style='color: #696969; text-transform: uppercase; margin-left: 40px'>Rust Forum</span><br>
+	<br>
+	<button onclick=\"reload('general')\" style='width: 585px;'>
+					<img src='https://files.facepunch.com/f/fi/6?c=cd84f' style='float: left;' width='55' height='55'>
 					<div class='forumtitle'>
 					Rust General
 					</div>
@@ -14,8 +14,8 @@
 					</div>
 	</button>
 	<br><br>
-	<button class='categorybutton' onclick=\"reload('servers')\">
-					<img class='categoryimage' src='https://files.facepunch.com/f/fi/46.d551c'>
+	<button onclick=\"reload('servers')\" style='width: 585px;'>
+					<img src='https://files.facepunch.com/f/fi/46.d551c' style='float: left;' width='55' height='55'>
 					<div class='forumtitle'>
 					Servers Discussions
 					</div>
@@ -24,8 +24,8 @@
 					</div>
 	</button>
 	<br><br>
-	<button class='categorybutton' onclick=\"reload('tips')\">
-					<img class='categoryimage' src='https://files.facepunch.com/f/forumicons/7/20171017-130258'>
+	<button onclick=\"reload('tips')\" style='width: 585px;'>
+					<img src='https://files.facepunch.com/f/forumicons/7/20171017-130258' style='float: left;' width='55' height='55'>
 					<div class='forumtitle'>
 					Game Tips
 					</div>
@@ -34,19 +34,18 @@
 					</div>
 	</button>
 	<br><br>
-	<button class='categorybutton' onclick=\"reload('help')\">
-					<img class='categoryimage' src='https://files.facepunch.com/f/forumicons/39/20171017-130221'>
+	<button onclick=\"reload('help')\" style='width: 585px;'>
+					<img src='https://files.facepunch.com/f/forumicons/39/20171017-130221' style='float: left;' width='55' height='55'>
 					<div class='forumtitle'>
 					Help me
 					</div>
 					<div class='forumsubtitle'>
 					Needed help with.
 					</div>
-	</button>
-	</div>";
+	</button>";
 		echo "~";
 		echo "<input type='text' id='searchfield' placeholder='Search' size='25'>";
-		echo "<button type='submit' id='searchsubmit' onclick=\"searchcontent('null')\"><image id='searchico' src='resources/search.ico'/></button>";
+		echo "<button type='submit' id='searchsubmit' onclick=\"searchcontent('null')\"><image src='resources/search.ico' style='width: 15px; height: 15px;'/></button>";
 		echo "~";
 		echo "<div id='registerpagebutton'>
 		<button class='button3' type='submit' name='registerpage' onclick='register()'>Register</button>

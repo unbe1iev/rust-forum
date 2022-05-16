@@ -5,10 +5,11 @@ require("config.php");
 $login = $_COOKIE['login'];
 $permission = $_POST['permission'];
 
-echo "<div class'normalfloat'><button class='button3' type='submit' name='addArticleButton' onclick=\"addArticleForm('$permission')\">Add an article</button></div><br><br>";
-echo "<br><br>
-<button class='reloadOrdered' onclick=\"reloadOrdered('general', '$permission')\">
-        <img class='categoryimage' src='https://files.facepunch.com/f/fi/6?c=cd84f'>
+echo "<div style='float: left'><button class='button3' type='submit' name='addArticleButton' onclick=\"addArticleForm('$permission')\" style='width: 120px; height: 40px; margin-left: 25px; margin-top: 3px'>Add an article</button></div>";
+echo "<span class='font2' style='color: #696969; text-transform: uppercase; margin-left: 40px'>Rust Forum</span><br>
+<br>
+<button onclick=\"reloadOrdered('general', '$permission')\" style='width: 585px;'>
+        <img src='https://files.facepunch.com/f/fi/6?c=cd84f' style='float: left;' width='55' height='55'>
         <div class='forumtitle'>
         Rust General
         </div>
@@ -17,8 +18,8 @@ echo "<br><br>
         </div>
 </button>
 <br><br>
-<button class='reloadOrdered' onclick=\"reloadOrdered('servers', '$permission')\">
-        <img class='categoryimage' src='https://files.facepunch.com/f/fi/46.d551c'>
+<button onclick=\"reloadOrdered('servers', '$permission')\" style='width: 585px;'>
+        <img src='https://files.facepunch.com/f/fi/46.d551c' style='float: left;' width='55' height='55'>
         <div class='forumtitle'>
         Servers Discussions
         </div>
@@ -27,8 +28,8 @@ echo "<br><br>
         </div>
 </button>
 <br><br>
-<button class='reloadOrdered' onclick=\"reloadOrdered('tips', '$permission')\">
-        <img class='categoryimage' src='https://files.facepunch.com/f/forumicons/7/20171017-130258'>
+<button onclick=\"reloadOrdered('tips', '$permission')\" style='width: 585px;'>
+        <img src='https://files.facepunch.com/f/forumicons/7/20171017-130258' style='float: left;' width='55' height='55'>
         <div class='forumtitle'>
         Game Tips
         </div>
@@ -37,8 +38,8 @@ echo "<br><br>
         </div>
 </button>
 <br><br>
-<button class='reloadOrdered' onclick=\"reloadOrdered('help', '$permission')\">
-        <img class='categoryimage' src='https://files.facepunch.com/f/forumicons/39/20171017-130221'>
+<button onclick=\"reloadOrdered('help', '$permission')\" style='width: 585px;'>
+        <img src='https://files.facepunch.com/f/forumicons/39/20171017-130221' style='float: left;' width='55' height='55'>
         <div class='forumtitle'>
         Help me
         </div>
@@ -49,14 +50,14 @@ echo "<br><br>
 echo "~";
 if ($permission == 'root'){
   echo "<input type='text' id='searchfield' placeholder='Search' size='25'>";
-  echo "<button type='submit' id='searchsubmit' onclick=\"searchcontent('root')\"><image src='resources/search.ico' id='searchico'/></button>";
+  echo "<button type='submit' id='searchsubmit' onclick=\"searchcontent('root')\"><image src='resources/search.ico' style='width: 15px; height: 15px;'/></button>";
 }
 if ($permission == 'user'){
   echo "<input type='text' id='searchfield' placeholder='Search' size='25'>";
-  echo "<button type='submit' id='searchsubmit' onclick=\"searchcontent('user')\"><image src='resources/search.ico' id='searchico'/></button>";
+  echo "<button type='submit' id='searchsubmit' onclick=\"searchcontent('user')\"><image src='resources/search.ico' style='width: 15px; height: 15px;'/></button>";
 }
 echo "~";
-echo "<div class='rank'>Welcome, ".$login."</div><button class='button2' type='submit' name='logoutredirect' onclick='logOut()' id='logoutpagebutton'>Log out</button>";
+echo "<div class='rank' style='color: white'>Welcome, ".$login."</div><button class='button2' type='submit' name='logoutredirect' onclick='logOut()' id='logoutpagebutton'>Log out</button>";
 echo "~";
 
 mysqli_select_db($connection, $dbname);
@@ -84,13 +85,13 @@ if ($permission == 'root'){
 
     <div class='articlepanel'>
 
-    <div class='normalfloat'>
+    <div style='float: left'>
     <input type='image' src='resources/delete.png' onclick='deleteArticleScript($id)'></div>
 
-    <div class='marginfloat'>
+    <div style='float: left; margin-left: 5px'>
     <input type='image' src='resources/edit.png' onclick=\"editArticleForm($id, 'root')\"></div>
 
-    <div class='marginfloat'>
+    <div style='float: left; margin-left: 5px'>
     <input type='image' src='resources/preview.png' onclick='previewArticle($id)'></div>
 
     </div>
@@ -100,5 +101,5 @@ if ($permission == 'root'){
 }
 
 mysqli_close($connection);
-} else echo "<h1 id='warn1'>You can't step like that!</h1><h2 id='warn2'>There is nothing here...</h2>";
+} else echo "<h1 style='color: red; font-family: Impact'>You can't step like that!</h1><h2 style='color: red; font-family: Calibri'>There is nothing here...</h2>";
 ?>

@@ -2,11 +2,11 @@
 session_start();
 
   echo "
-        <div id='registerform1'>
+        <div style='margin-top: 30px;width: 585px; height: 365px'>
           <span class='span1' >Create an account!</span>
           <br><br><br><br><br>
 
-          <div id='registerform2'>
+          <div style='width: 210px; height: 200px; float: left'>
             <span class='span2'>Login: </span>
             <br><br><br>
 
@@ -16,11 +16,15 @@ session_start();
             <span class='span3'>Password: </span>
           </div>
 
-          <div id='registerform3'>
-            <input type='text' id='login' name='login'>
-            <input type='password' id='password1' name='password1'>
-            <input type='password' id='password2' name='password2'>
+          <div style='width: 175px; height: 200px; float: left'>
+            <input type='text' id='login' name='login' style='margin-top: 5px'>
+            <input type='password' id='password1' name='password1' style='margin-top: 43px'>
+            <input type='password' id='password2' name='password2' style='margin-top: 43px'>
             <button class='button1' type='submit' onclick='registerScript()'>Register</button>
+          </div>
+
+          <div style='width: 200px; height: 200px; float: left'>
+            <image src='resources/campfire.gif' id='campfire' width='210px' height='150px'>
           </div>
         </div>";
 
@@ -49,9 +53,9 @@ session_start();
 				 } else echo "<h1 style='color: red'>Fill in all fields!</h1>";
 			 }
 				echo "~";
-        		echo "<input type='text' id='searchfield' placeholder='Search' size='25'>";
-        		echo "<button type='submit' id='searchsubmit' onclick=\"searchcontent('null')\"><image id='searchico' src='resources/search.ico'/></button>";
-        		echo "~";
+        echo "<input type='text' id='searchfield' placeholder='Search' size='25'>";
+        echo "<button type='submit' id='searchsubmit' onclick=\"searchcontent('null')\"><image src='resources/search.ico' style='width: 15px; height: 15px;'/></button>";
+        echo "~";
 				echo "<div id='registerpagebutton'>
 				<button class='button3' type='submit' name='registerpage' onclick='register()'>Register</button>
 				</div>

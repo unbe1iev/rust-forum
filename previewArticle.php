@@ -5,9 +5,10 @@ $id = $_GET['id'];
 $login = $_COOKIE['login'];
 
 echo "<button type='submit' class='button2' style='width: 100px; margin-right: 70px; margin-top: 5px;' onclick='backScript()' id='backButtonScript'>Back</button>";
-echo "<br><br>
-<button class='reloadOrdered' onclick=\"reloadOrdered('general', 'root')\">
-        <img class='categoryimage'src='https://files.facepunch.com/f/fi/6?c=cd84f'>
+echo "<span class='font2' style='color: #696969; text-transform: uppercase; margin-left: 40px'>Rust Forum</span><br>
+<br>
+<button onclick=\"reloadOrdered('general', 'root')\" style='width: 585px;'>
+        <img src='https://files.facepunch.com/f/fi/6?c=cd84f' style='float: left;' width='55' height='55'>
         <div class='forumtitle'>
         Rust General
         </div>
@@ -16,8 +17,8 @@ echo "<br><br>
         </div>
 </button>
 <br><br>
-<button class='reloadOrdered' onclick=\"reloadOrdered('servers', 'root')\">
-        <img class='categoryimage' src='https://files.facepunch.com/f/fi/46.d551c'>
+<button onclick=\"reloadOrdered('servers', 'root')\" style='width: 585px;'>
+        <img src='https://files.facepunch.com/f/fi/46.d551c' style='float: left;' width='55' height='55'>
         <div class='forumtitle'>
         Servers Discussions
         </div>
@@ -26,8 +27,8 @@ echo "<br><br>
         </div>
 </button>
 <br><br>
-<button class='reloadOrdered' onclick=\"reloadOrdered('tips', 'root')\">
-        <img class='categoryimage' src='https://files.facepunch.com/f/forumicons/7/20171017-130258'>
+<button onclick=\"reloadOrdered('tips', 'root')\" style='width: 585px;'>
+        <img src='https://files.facepunch.com/f/forumicons/7/20171017-130258' style='float: left;' width='55' height='55'>
         <div class='forumtitle'>
         Game Tips
         </div>
@@ -36,8 +37,8 @@ echo "<br><br>
         </div>
 </button>
 <br><br>
-<button class='reloadOrdered' onclick=\"reloadOrdered('help', 'root')\">
-        <img class='categoryimage' src='https://files.facepunch.com/f/forumicons/39/20171017-130221'>
+<button onclick=\"reloadOrdered('help', 'root')\" style='width: 585px;'>
+        <img src='https://files.facepunch.com/f/forumicons/39/20171017-130221' style='float: left;' width='55' height='55'>
         <div class='forumtitle'>
         Help me
         </div>
@@ -47,7 +48,7 @@ echo "<br><br>
 </button>";
 echo "~";
 echo "<input type='text' id='searchfield' placeholder='Search' size='25'>";
-echo "<button type='submit' id='searchsubmit' onclick=\"searchcontent('root')\"><image src='resources/search.ico' id='searchico'/></button>";
+echo "<button type='submit' id='searchsubmit' onclick=\"searchcontent('root')\"><image src='resources/search.ico' style='width: 15px; height: 15px;'/></button>";
 echo "~";
 echo "<div class='rank' style='color: white'>Welcome, ".$login."</div><div style='float: left;'><button class='button2' type='submit' name='logoutredirect' onclick='logOut()' id='logoutpagebutton'>Log out</button></div>";
 echo "~";
